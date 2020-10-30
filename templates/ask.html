@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <h3>{{ word }}</h3>
+    <form action="{{ url_for('submit') }}" method="post">
+        <input type="text" name="name">
+        <button>Submit</button>
+         </form>
+{% endblock %}
+
