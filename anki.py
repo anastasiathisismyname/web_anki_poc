@@ -56,16 +56,16 @@ def submit():
         print(f"correct is: '{cw}' and user pasted: '{uw}'", file=sys.stderr)
     return render_template('result.html', correct_word=cw, user_word=uw, correct=correct_bool)
 
-def main():
-    db.create_all()
-    f = open(os.path.join(root_dir, "words1.csv"))
-    reader = csv.reader(f)
-    for gw, rw in reader:
-        card = Card(gw=gw, rw=rw)
-        db.session.add(card)
-    db.session.commit()
-
-
-if __name__ == "__main__":
-    with app.app_context():
-        main()
+# def main():
+#     db.create_all()
+#     f = open(os.path.join(root_dir, "words1.csv"))
+#     reader = csv.reader(f)
+#     for gw, rw in reader:
+#         card = Card(gw=gw, rw=rw)
+#         db.session.add(card)
+#     db.session.commit()
+#
+#
+# if __name__ == "__main__":
+#     with app.app_context():
+#         main()
