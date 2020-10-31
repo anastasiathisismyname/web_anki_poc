@@ -1,9 +1,0 @@
-{% extends 'layout.html' %}
-{% block body %}
-    {% if correct %}
-        <h3 style=color:green;>{{ correct_word }}</h3>
-    {% else %}
-        <h3 style=color:red>{{ correct_word }}</h3>
-    {% endif %}
-        <a href=ask><button>Next</button></a>
-{% endblock %}

@@ -1,1 +1,1 @@
-# web_anki_poc
+This version contains ORM 
