@@ -22,6 +22,7 @@ class Card(db.Model):
 
 
 word = None
+words = Card.query.all()
 
 @app.route('/')
 def home():
@@ -30,36 +31,71 @@ def home():
 @app.route('/ask')
 def ask():
     global word
-    words = Card.query.all()
     the_word = random.choice(words)
     word = the_word.rw
     return render_template('ask.html', word=word)
 
 @app.route('/submit', methods=["POST"])
 def submit():
-    uw = request.form.get('name')
+    uw = request.form.get('name').lower()
     global word
-    correct_bool = False
-    cw = Card.query.filter_by(rw=word).first().gw
-    print(cw, file=sys.stderr)
+    correct = False
+    cw = Card.query.filter_by(rw=word).first().gw.lower()
+    print(f"Correct word: {cw}", file=sys.stderr)
     try:
         uw = Card.query.filter_by(gw=uw).first()
         if uw is not None:
             if uw.gw == cw:
-                correct_bool = True
+                correct = True
     except:
-        print(f"correct is: '{cw}' and user pasted: '{uw}'", file=sys.stderr)
-    return render_template('result.html', correct_word=cw, user_word=uw, correct=correct_bool)
+        print(f"Incorrect input: '{uw}'", file=sys.stderr)
+    return render_template('result.html', correct_word=cw, user_word=uw, correct=correct)
 
-# def main():
-#     db.create_all()
-#     f = open(os.path.join(root_dir, "words1.csv"))
-#     reader = csv.reader(f)
-#     for gw, rw in reader:
-#         card = Card(gw=gw, rw=rw)
-#         db.session.add(card)
-#     db.session.commit()
-#
+
+@app.route('/add_new')
+def add_new():
+    return render_template('add_new.html', word=word)
+
+@app.route('/add_new_ok', methods=["POST"])
+def add_new_ok():
+    gw_add = request.form.get('gw').lower()
+    rw_add = request.form.get('rw').lower()
+    me = Card(gw=gw_add, rw=rw_add)
+    db.session.add(me)
+    db.session.commit()
+    return render_template('home.html')
+
+
+@app.route('/delete')
+def delete():
+    return render_template('delete.html', word=word)
+
+@app.route('/delete_ok', methods=["POST"])
+def delete_ok():
+    rus = request.form.get('rw').lower()
+    Card.query.filter_by(rw=rus).delete()
+    db.session.commit()
+    return render_template('home.html')
+
+@app.route('/show')
+def show():
+    return render_template('show.html', rows=words)
+
+
+def main():
+    db.create_all()
+    # file_data = open(os.path.join(root_dir, "objects.csv"))
+    # reader = csv.reader(file_data)
+    # for gw, rw in reader:
+    #     card = Card(gw=gw, rw=rw)
+    #     db.session.add(card)
+    # db.session.commit()
+
+
 # if __name__ == "__main__":
 #     with app.app_context():
 #         main()
+
+
+# select: print(Card.query.filter_by(rw="russian").first().gw)
+# delete: Card.query.filter_by(rw="как мне добраться до больницы Элизабет").delete()

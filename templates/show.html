@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% for row in rows %}
+    <tr>
+        <td>{{ row.rw }}</td>
+        <td>{{ row.gw }}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}
