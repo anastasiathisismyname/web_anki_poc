@@ -1,14 +1,10 @@
 from flask import Flask
 from flask import render_template, request
 import random
-from markupsafe import escape
 import sys
-import os
 from flask_sqlalchemy import SQLAlchemy
-import csv
 
 
-root_dir = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///site.db"
@@ -35,6 +31,21 @@ def ask():
     word = the_word.rw
     return render_template('ask.html', word=word)
 
+@app.route('/add_new')
+def add_new():
+    return render_template('add_new.html', word=word)
+
+
+@app.route('/delete')
+def delete():
+    return render_template('delete.html', word=word)
+
+
+@app.route('/show')
+def show():
+    return render_template('show.html', rows=words)
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 @app.route('/submit', methods=["POST"])
 def submit():
     uw = request.form.get('name').lower()
@@ -52,10 +63,6 @@ def submit():
     return render_template('result.html', correct_word=cw, user_word=uw, correct=correct)
 
 
-@app.route('/add_new')
-def add_new():
-    return render_template('add_new.html', word=word)
-
 @app.route('/add_new_ok', methods=["POST"])
 def add_new_ok():
     gw_add = request.form.get('gw').lower()
@@ -66,10 +73,6 @@ def add_new_ok():
     return render_template('home.html')
 
 
-@app.route('/delete')
-def delete():
-    return render_template('delete.html', word=word)
-
 @app.route('/delete_ok', methods=["POST"])
 def delete_ok():
     rus = request.form.get('rw').lower()
@@ -77,25 +80,4 @@ def delete_ok():
     db.session.commit()
     return render_template('home.html')
 
-@app.route('/show')
-def show():
-    return render_template('show.html', rows=words)
 
-
-def main():
-    db.create_all()
-    # file_data = open(os.path.join(root_dir, "objects.csv"))
-    # reader = csv.reader(file_data)
-    # for gw, rw in reader:
-    #     card = Card(gw=gw, rw=rw)
-    #     db.session.add(card)
-    # db.session.commit()
-
-
-# if __name__ == "__main__":
-#     with app.app_context():
-#         main()
-
-
-# select: print(Card.query.filter_by(rw="russian").first().gw)
-# delete: Card.query.filter_by(rw="как мне добраться до больницы Элизабет").delete()

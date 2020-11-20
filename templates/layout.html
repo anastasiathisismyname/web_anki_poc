@@ -1,23 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-    body {
-        background: palevioletred;
-    }
-#content {
-    margin: auto;
-    width: 20%;
-    padding: 10px;
-    text-align:center;
-    background-color: cornflowerblue;
-}
-</style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@300&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@300&family=Xanh+Mono&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+    <style>
+        input[type=text] {
+            width: 20%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            font-size: 2rem;
+        }
+
+        button {
+            padding: 1rem;
+            border: 0.5rem solid hotpink;
+            border-radius: 0.5rem;
+            font-size: 4rem;
+            background: hotpink;
+            color: forestgreen;
+            font-family: 'Big Shoulders Stencil Display', cursive;
+        }
+
+        .show {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .default_button {
+            padding: 0.5rem;
+            border: 0.5rem solid olivedrab;
+            border-radius: 0.5rem;
+            font-size: 1.5rem;
+            background: olivedrab;
+            color: hotpink;
+            font-family: 'Xanh Mono', monospace;
+        }
+
+        .back_button{
+            padding: 0.5rem;
+            border: 0.5rem solid darkolivegreen;
+            background: darkolivegreen;
+            font-size: 3rem;
+            color: mediumvioletred;
+        }
+
+        .default_div {
+            padding-top: 80px;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
-<div id="content">
-{% block body %}
-{% endblock %}
+<div>
+    {% block body %}
+    {% endblock %}
 </div>
 </body>
 </html>
