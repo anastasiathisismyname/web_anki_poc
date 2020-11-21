@@ -1,13 +1,13 @@
 {% extends 'layout.html' %}
 {% block body %}
-<div class="default_div">
-    <h2 style="font-family: 'Prata', serif;">{{ word }}</h2>
+
+
+<div class="ask_div">
     <form action="{{ url_for('submit') }}" method="post">
-        <input type="text" name="name"><br>
+        <input type="text" name="name" placeholder="{{ word }}">
         <button class="default_button">OK</button>
          </form>
-    <br>
-<a href="/" ><button class="back_button">Back</button></a>
-    </div>
+    <a href="/" ><button class="back_button">Back to Home</button></a>
+</div>
 {% endblock %}
 

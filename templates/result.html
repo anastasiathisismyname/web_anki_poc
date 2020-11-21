@@ -1,11 +1,16 @@
 {% extends 'layout.html' %}
 {% block body %}
+
 <div class="default_div">
+
     {% if correct %}
-        <h2 style="font-family: 'Prata', serif; color:green;">{{ correct_word }}</h2>
+        <img src="/static/yes.png" width=256>
     {% else %}
-        <h2 style="font-family: 'Prata', serif; color:red">{{ correct_word }}</h2>
+        <img src="/static/no.png" width=256>
     {% endif %}
-        <a href=ask><button class="default_button">Next</button></a>
+    <h2>{{ correct_word }}</h2>
+    <a href=ask><button class="default_button">Next</button></a>
+    <br>
+<a href="/" ><button class="back_button">Back to Home</button></a>
 </div>
 {% endblock %}
