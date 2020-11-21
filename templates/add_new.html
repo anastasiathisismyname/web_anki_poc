@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="default_div">
+    <form action="{{ url_for('add_new_ok') }}" method="post">
+        <input type="text" name="gw" placeholder="german">
+        <br>
+        <input type="text" name="rw" placeholder="russian">
+        <br>
+        <button class="default_button">OK</button>
+    </form>
+    <br>
+    <a href="/">
+        <button class="back_button">Back</button>
+    </a>
+</div>
+{% endblock %}
+

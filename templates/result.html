@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="default_div">
+    {% if correct %}
+        <h2 style="font-family: 'Prata', serif; color:green;">{{ correct_word }}</h2>
+    {% else %}
+        <h2 style="font-family: 'Prata', serif; color:red">{{ correct_word }}</h2>
+    {% endif %}
+        <a href=ask><button class="default_button">Next</button></a>
+</div>
+{% endblock %}
