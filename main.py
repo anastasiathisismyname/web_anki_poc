@@ -18,7 +18,9 @@ class Card(db.Model):
 
 
 word = None
-words = Card.query.all()
+
+def get_all_records():
+    return Card.query.all()
 
 @app.route('/')
 def home():
@@ -27,6 +29,7 @@ def home():
 @app.route('/ask')
 def ask():
     global word
+    words = get_all_records()
     the_word = random.choice(words)
     word = the_word.rw
     return render_template('ask.html', word=word)
@@ -43,6 +46,7 @@ def delete():
 
 @app.route('/show')
 def show():
+    words = get_all_records()
     return render_template('show.html', rows=words)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
