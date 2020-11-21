@@ -2,63 +2,69 @@
 <html lang="en">
 <head>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@300&display=swap"
-          rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@300&family=Xanh+Mono&display=swap"
-          rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-   <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+
+<!--    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@300&display=swap" rel="stylesheet">-->
+<!--    font-family: 'Big Shoulders Stencil Display';-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">-->
+<!--    font-family: 'Prata';-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Roboto:wght@100&family=Texturina:wght@100&display=swap" rel="stylesheet">-->
+<!--font-family: 'Texturina';-->
+<!--font-family: 'Open Sans Condensed';-->
+<!--font-family: 'Roboto';-->
+<link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
     <style>
         input[type=text] {
             width: 20%;
             padding: 12px 20px;
             margin: 8px 0;
             box-sizing: border-box;
-            font-size: 2rem;
+            font-size: 1rem;
         }
 
         button {
-            padding: 1rem;
-            border: 0.5rem solid hotpink;
+            padding: 12px 20px;
+            /*padding: 0.5rem;*/
+            margin: 30px;
+            border: 0.5rem solid #fa4692;
             border-radius: 0.5rem;
             font-size: 4rem;
-            background: hotpink;
-            color: forestgreen;
-            font-family: 'Big Shoulders Stencil Display', cursive;
+            background: #fa4692;
+            color: white;
+            font-family: 'Yanone Kaffeesatz', sans-serif;
+            /*font-weight: bold;*/
+
         }
 
         .show {
-            font-size: 1.5rem;
+            font-size: 2rem;
             text-align: center;
         }
 
         .default_button {
             padding: 0.5rem;
-            border: 0.5rem solid olivedrab;
+            border: 0.5rem solid #A743EB;
             border-radius: 0.5rem;
-            font-size: 1.5rem;
-            background: olivedrab;
-            color: hotpink;
-            font-family: 'Xanh Mono', monospace;
+            font-size: 2rem;
         }
 
-        .back_button{
-            padding: 0.5rem;
-            border: 0.5rem solid darkolivegreen;
-            background: darkolivegreen;
-            font-size: 3rem;
-            color: mediumvioletred;
+        .back_button {
+            border: 0.5rem solid blueviolet;
+            background: blueviolet;
+            color: #BCEBCF;
+            font-size: 2.5rem;
+            text-align: center;
         }
 
         .default_div {
             padding-top: 80px;
             text-align: center;
+
         }
 
     </style>
 </head>
-<body>
+<body style="background-color: #0A0461">
 <div>
     {% block body %}
     {% endblock %}
