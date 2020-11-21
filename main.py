@@ -18,6 +18,7 @@ class Card(db.Model):
 
 
 word = None
+correct_word = None
 
 def get_all_records():
     return Card.query.all()
@@ -26,23 +27,33 @@ def get_all_records():
 def home():
     return render_template('home.html')
 
+def filter_words(words):
+    if correct_word is not None:
+        print(f"Correct word: '{correct_word}'")
+        russian_word = Card.query.filter_by(gw=correct_word).first().rw
+        words.pop(words.index(russian_word))
+        print(f"{russian_word} removed from correct words list")
+    return words
+
 @app.route('/ask')
 def ask():
     global word
     words = get_all_records()
-    the_word = random.choice(words)
-    word = the_word.rw
+    filtered_words = filter_words([w.rw for w in words])
+    if filtered_words:
+        the_word = random.choice(filtered_words)
+        word = the_word
+    else:
+        word = None
     return render_template('ask.html', word=word)
 
 @app.route('/add_new')
 def add_new():
     return render_template('add_new.html', word=word)
 
-
 @app.route('/delete')
 def delete():
     return render_template('delete.html', word=word)
-
 
 @app.route('/show')
 def show():
@@ -52,19 +63,23 @@ def show():
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 @app.route('/submit', methods=["POST"])
 def submit():
-    uw = request.form.get('name').lower()
     global word
     correct = False
-    cw = Card.query.filter_by(rw=word).first().gw.lower()
-    print(f"Correct word: {cw}", file=sys.stderr)
-    try:
-        uw = Card.query.filter_by(gw=uw).first()
-        if uw is not None:
-            if uw.gw == cw:
-                correct = True
-    except:
-        print(f"Incorrect input: '{uw}'", file=sys.stderr)
-    return render_template('result.html', correct_word=cw, user_word=uw, correct=correct)
+    user_input = request.form.get('name')
+    if word:
+        cw = Card.query.filter_by(rw=word).first().gw.lower()
+        print(f"Correct word: '{cw}'", file=sys.stderr)
+        uw = user_input.lower().strip()
+        print(f"User word: '{uw}'")
+        if uw == cw:
+            print("Correct!")
+            correct = True
+            global correct_word
+            correct_word = cw
+        else:
+            print("Incorrect")
+        return render_template('result.html', correct_word=cw, user_word=uw, correct=correct)
+    return render_template('home.html')
 
 
 @app.route('/add_new_ok', methods=["POST"])
