@@ -5,7 +5,7 @@
     <form action="{{ url_for('submit') }}" method="post">
         {% if word %}
             <input type="text" name="name" placeholder="{{ word }}">
-            <button class="default_button">OK</button>
+            <button class="ok_button">OK</button>
              </form>
         {% else %}
             <h2>You have answered all words!</h2>

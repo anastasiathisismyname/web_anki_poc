@@ -2,14 +2,6 @@
 <html lang="en">
 <head>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-
-<!--    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@300&display=swap" rel="stylesheet">-->
-<!--    font-family: 'Big Shoulders Stencil Display';-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Roboto:wght@100&family=Texturina:wght@100&display=swap" rel="stylesheet">-->
-<!--font-family: 'Texturina';-->
-<!--font-family: 'Open Sans Condensed';-->
-<!--font-family: 'Roboto';-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">-->
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Secular+One&display=swap" rel="stylesheet">
     <style>
@@ -22,8 +14,8 @@
         input {
             width: 20%;
             padding: 12px 20px;
-            margin: 8px 0;
-            background: #BCEBCF;
+            margin: 6px 0;
+            background: #CCFFFF;
             border-radius: 0.5rem;
             /*box-sizing: border-box;*/
             font-size: 2rem;
@@ -32,17 +24,12 @@
         button {
             padding: 0.5rem;
             margin: 20px;
-            border: 0.5rem solid blueviolet;
+            border: 0.5rem solid #660066;
             border-radius: 0.5rem;
-            font-size: 2rem;
-            background: blueviolet;
-            color: #BCEBCF;
+            font-size: 3rem;
+            background: #660066;
+            color: #CCFFFF;
             font-family: 'Luckiest Guy', cursive;
-        }
-
-        .show {
-            font-size: 2rem;
-            text-align: center;
         }
 
         .default_button {
@@ -50,19 +37,26 @@
         }
 
         .back_button {
-            border: 0.25rem solid darkslateblue;
-            background: blueviolet;
-            color: #BCEBCF;
+            border: 0.25rem solid #666699;
+            background: #660066;
+            color: #CCFFFF;
             font-size: 2.5rem;
             text-align: center;
         }
 
         .ok_button {
-            border: 0.25rem solid darkslateblue;
+            font-size: 2rem;
+            border: 0.25rem solid #666699;
         }
 
         .default_div {
             padding-top: 80px;
+            text-align: center;
+        }
+
+        .show {
+            padding-top: 20px;
+            font-size: 2rem;
             text-align: center;
         }
 
@@ -74,7 +68,7 @@
 
     </style>
 </head>
-<body style="background-color: darkslateblue">
+<body style="background-color: #9999CC">
 <div>
     {% block body %}
     {% endblock %}
