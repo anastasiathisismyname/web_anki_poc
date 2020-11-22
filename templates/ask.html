@@ -2,13 +2,14 @@
 {% block body %}
 
 <div class="ask_div">
-    <form action="{{ url_for('submit') }}" method="post">
         {% if word %}
+        <form action="{{ url_for('submit') }}" method="post">
             <input type="text" name="name" placeholder="{{ word }}">
             <button class="ok_button">OK</button>
              </form>
         {% else %}
             <h2>You have answered all words!</h2>
+            <a href=refresh><button class="back_button">Start again</button></a>
         {% endif %}
     <a href="/" ><button class="back_button">Back to Home</button></a>
 </div>

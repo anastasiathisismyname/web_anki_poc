@@ -17,33 +17,23 @@ class Card(db.Model):
     rw = db.Column(db.String, primary_key=True)
 
 
-word = None
-correct_word = None
-
 def get_all_records():
     return Card.query.all()
+
+word = None
+words = [w.rw for w in get_all_records()]
 
 @app.route('/')
 def home():
     return render_template('home.html')
 
-def filter_words(words):
-    if correct_word is not None:
-        print(f"Correct word: '{correct_word}'")
-        russian_word = Card.query.filter_by(gw=correct_word).first().rw
-        words.pop(words.index(russian_word))
-        print(f"{russian_word} removed from correct words list")
-    return words
-
 @app.route('/ask')
 def ask():
     global word
-    words = get_all_records()
-    filtered_words = filter_words([w.rw for w in words])
-    if filtered_words:
-        the_word = random.choice(filtered_words)
+    try:
+        the_word = random.choice(words)
         word = the_word
-    else:
+    except IndexError:
         word = None
     return render_template('ask.html', word=word)
 
@@ -74,13 +64,13 @@ def submit():
         if uw == cw:
             print("Correct!")
             correct = True
-            global correct_word
-            correct_word = cw
+            global words
+            if words:
+                words.pop(words.index(word))
         else:
             print("Incorrect")
         return render_template('result.html', correct_word=cw, user_word=uw, correct=correct)
     return render_template('home.html')
-
 
 @app.route('/add_new_ok', methods=["POST"])
 def add_new_ok():
@@ -98,6 +88,12 @@ def delete_ok():
     Card.query.filter_by(rw=rus).delete()
     db.session.commit()
     return render_template('home.html')
+
+@app.route('/refresh')
+def refresh():
+    global words
+    words = [w.rw for w in get_all_records()]
+    return render_template('home.html', word=word)
 
 
 if __name__ == '__main__':
