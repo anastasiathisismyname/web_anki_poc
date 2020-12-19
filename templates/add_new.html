@@ -1,15 +1,15 @@
 {% extends 'layout.html' %}
 {% block body %}
-<div class="default_div">
+<div>
     <form action="{{ url_for('add_new_ok') }}" method="post">
         <input type="text" name="gw" placeholder="german">
         <br>
         <input type="text" name="rw" placeholder="russian">
         <br>
-        <button class="ok_button">OK</button>
+        <button>OK</button>
     </form>
     <a href="/">
-        <button class="back_button">Back to home</button>
+        <button>Back</button>
     </a>
 </div>
 {% endblock %}

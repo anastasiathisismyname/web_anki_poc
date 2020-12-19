@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block body %}
 
-<div class="default_div">
+<div>
 
     {% if correct %}
         <img src="/static/yes.png" width=256>
@@ -9,8 +9,8 @@
         <img src="/static/no.png" width=256>
     {% endif %}
         <h2>{{ correct_word }}</h2>
-        <a href=ask><button class="ok_button">Next</button></a>
+        <a href=ask><button>Next</button></a>
     <br>
-<a href="/" ><button class="back_button">Back to Home</button></a>
+<a href="/" ><button>Back</button></a>
 </div>
 {% endblock %}

@@ -1,1 +1,2 @@
-style="height: 40px" 
+set FLASK_APP=hello.py
+flask run
